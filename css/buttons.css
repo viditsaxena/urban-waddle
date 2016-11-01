@@ -1,0 +1,57 @@
+.uw-yelp {
+  background: #ffffff !important;
+  /*background-image: -webkit-linear-gradient(top, #d90007, #c91400) !important;
+  background-image: -moz-linear-gradient(top, #d90007, #c91400) !important;
+  background-image: -ms-linear-gradient(top, #d90007, #c91400) !important;
+  background-image: -o-linear-gradient(top, #d90007, #c91400) !important;
+  background-image: linear-gradient(to bottom, #d90007, #c91400) !important;*/
+  -webkit-border-radius: 4 !important;
+  -moz-border-radius: 4 !important;
+  border-radius: 4px !important;
+  font-family: Arial !important;
+  color: #d90007 !important;
+  font-size: 12px !important;
+  text-decoration: none !important;
+  margin-left: 10px !important;
+
+}
+
+.uw-yelp:hover {
+  background: #d90007 !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+}
+
+.uw-lonelyplanet,.uw-zomato,.uw-tripadvisor {
+  -webkit-border-radius: 3 !important;
+  -moz-border-radius: 3 !important;
+  border-radius: 3px !important;
+  font-family: Arial !important;
+  color: #589442 !important;
+  font-size: 12px !important;
+  background: #ffffff !important;
+  /*padding: 6px 6px 6px 6px !important;*/
+  text-decoration: none !important;
+  margin-left: 10px !important;
+
+}
+
+.uw-lonelyplanet,.uw-zomato,.uw-tripadvisor:hover {
+  background: #589442 !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.zabihah {
+	font-size: 10px !important;
+	line-height: 11px !important;
+	color: #ffffff !important;
+	font-weight: 400 !important;
+	font-family: 'Gudea', san-serif !important;
+	text-shadow: none !important;
+	}
+
+.zabihah:hover {
+  background: #6354f3 !important;
+  text-decoration: none !important;
+}

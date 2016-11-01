@@ -1,0 +1,223 @@
+.side-bar-wrap {
+  width: 100% !important;
+  margin: 0 auto !important;
+  position: relative !important;
+}
+
+
+#uw-popUp #header {
+    height: 35px !important;
+    background-color: white !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    padding-right: 10px !important;
+    border-bottom: 1px solid lightgrey !important;
+}
+
+#uw-popUp #header #uw-logo-text {}
+
+#uw-popUp #header #uw-close-popup {
+    float: right !important;
+    color: #6354f3 !important;
+    font-size: 30px !important;
+    cursor: pointer;
+}
+
+
+#uw-popUpContent {
+    color: black !important;
+    font-size: 14px !important;
+    margin-left: 0px !important;
+    height: 100% !important;
+}
+
+.ext-routePages {
+    text-align: center !important;
+    padding: 10px !important;
+    margin: 0px !important;
+    height: 100% !important;
+    padding-bottom: 0px !important;
+}
+
+.ext-alert {
+    margin: 2px !important;
+    margin-bottom: 10px !important;
+}
+
+.search-place-input {
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    height: 40px !important;
+    outline: none !important;
+    /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);*/
+    width: 100% !important;
+    margin-bottom: 20px !important;
+}
+
+#pac-input {
+    background-color: #EDEDFA !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    padding: 0 11px 0 13px !important;
+    text-overflow: ellipsis !important;
+    color: black !important;
+    font-weight: bold !important;
+    border: 0px !important;
+    border-bottom: 2px solid lightgray !important;
+    outline: 0 !important;
+    height: 40px !important;
+}
+
+#pac-input:hover {
+    border: 0 !important;
+    border-bottom: 2px solid #6354f3 !important;
+    border-radius: 0px !important;
+    background-color: #EDEDFA !important;
+}
+
+#pac-input:focus {
+    border: 0 !important;
+    border-bottom: 2px solid #6354f3 !important;
+    background-color: #EDEDFA !important;
+}
+
+input[type="text"]#pac-input::-webkit-input-placeholder {
+    color: gray !important;
+}
+
+.uw-placeDetails .input-group-addon {
+    border-radius: 0px !important;
+    border: 0px !important;
+}
+
+.uw-placeDetails .form-control {
+    border-radius: 0px !important;
+    background-color: whitesmoke !important;
+    border: 0px !important;
+}
+
+#ext-spot-content {
+    height: 60% !important;
+    overflow-y: scroll !important;
+}
+
+
+#lightbox_background {
+    background-color: rgba(200, 200, 200, 0.5) !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed !important;
+    z-index: 1000 !important;
+    top: 0px !important;
+    left: 0px !important;
+}
+
+
+
+
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ */
+
+ [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+   display: none !important;
+ }
+
+.uw-placeDetails {
+    overflow: scroll !important;
+    /*height: 320px;*/
+}
+
+.border-black {
+    border: 1px solid #000000 !important;
+}
+.select-plan-btn-wrapper{
+  float: left !important;
+}
+.selectPlanBtn {
+    background-color: whitesmoke !important;
+    height: 35px !important;
+    width: 310px !important;
+    border: 0px !important;
+    color: grey !important;
+}
+.selectPlanBtn:hover {
+  color: #6354f3 !important;
+  border-bottom: 1px solid #6354f3 !important;
+}
+.selectPlanCaret {
+  width: 34px !important;
+  height: 34px !important;
+  margin-left: 5px !important;
+  background-color: whitesmoke !important;
+  color: #6354f3 !important;
+  border-radius: 50% !important;
+  border: 1px solid grey !important;
+}
+.selectPlanCaret:hover {
+  background-color: #6354f3 !important;
+  color: white !important;
+}
+#add-btn-wrapper {
+    position: fixed !important;
+    bottom: 20px !important;
+    width: 100% !important;
+}
+.addBtn {
+    background-color: #6354f3 !important;
+    border-radius: 20px !important;
+    color: white !important;
+    font-size: 14px !important;
+    width: 200px !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+#ext-map-section {
+    display: none !important;
+    min-height: 1px !important;
+    color: black !important;
+    margin: 2px !important;
+    position: fixed !important;
+    bottom: 60px !important;
+    right: 0 !important;
+    left: 0 !important;
+    height: 20% !important;
+}
+#uw-predictions {
+    text-align: left !important;
+    padding: 10px 0px 0px 0px !important;
+    list-style: none !important;
+    background: #eee !important;
+    color: #000 !important;
+    margin-top: 30px !important;
+    /*border-bottom: 1px solid #EFEFEF;*/
+
+    background-color: whitesmoke !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: auto !important;
+    z-index: 1 !important;
+    margin-left: 0px !important;
+    /*border:1px solid #ccc;*/
+    font-size: smaller !important;
+}
+#uw-predictions>li {
+    padding: 10px 10px 0px 10px !important;
+    border-bottom: 1px solid darkgrey !important;
+    cursor: pointer !important;
+}
+#uw-predictions>li>i {
+    margin-right: 10px !important;
+    color: #808080 !important;
+    padding: 5px 10px !important;
+}
+#uw-predictions>li:hover {
+    background-color: #EFEFEF !important;
+}
+.uw-place-info {
+    padding: 0px !important;
+    text-align: left !important;
+    font-size: 12px !important;
+}

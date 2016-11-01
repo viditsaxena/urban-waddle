@@ -1,0 +1,24 @@
+/******************************Stylesheet for the popup**********************************/
+
+/*html {
+    height: 90%;
+}
+
+body {
+    height: 100%;
+}*/
+.unwander-sidebar-iframe {
+  height: calc(100% - 20px - 20px)!important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  z-index: 2147483000!important;
+  position: fixed!important;
+  top: 20px!important;
+  bottom: 20px!important;
+  right: 20px!important;
+  width: 370px!important;
+  min-height: 250px!important;
+  max-height: 790px!important;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, .16)!important;
+  border-radius: 8px!important;
+  overflow: hidden!important;
+}

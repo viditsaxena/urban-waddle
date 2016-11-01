@@ -1,0 +1,4 @@
+{
+	"DOMAIN_ROOT": "http://qa.unwander.com/",
+	"BACKEND_ROOT": "http://qa.unwander.com:8080/"
+}

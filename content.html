@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="unwanderApp" ng-csp>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Unwander | Most Clever Way to Plan</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <!-- Need this file for ng-hide and ng-show to work in CSP in Chrome Extensions -->
+    <link href="css/angular-csp.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <!-- Google Libraries -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvkISJD8ay_X92_2BJxoe1k15ICtGFf5o&libraries=places"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-cookies.js"></script>
+    <script src="js/gservice.js"></script>
+    <script src="js/googleMapFactory.js"></script>
+    <script src="js/googlePlacesFactory.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body ng-controller="mainController" ng-cloak class="content-body">
+  <div class="side-bar-wrap">
+
+    <div id="uw-popUp">
+        <div id="header">
+            <a id="uw-close-popup" ng-click="closeUnwanderSideBar()">×</a>
+        </div>
+    </div>
+
+    <div id="uw-popUpContent-wrapper">
+        <!-- *********************************************LOGIN CODE**********************************************-->
+        <div id="uw-popUpContent">
+            <div ng-hide="token" ng-cloak class="container">
+                <div class="row">
+                    <div style="text-align: center; margin-top: 40%;" class="col-md-12">
+                        <h4 style="color:red">You are not logged in.</h4>
+                        <h5 class="text-alert">
+            <a href="" ng-click="$event.preventDefault; openUnwanderHome()">Click Here</a> to login.
+            If you are a new user, please <a href="" ng-click="$event.preventDefault; openUnwanderHome()">Sign Up</a>
+            and then reload the extension.
+           </h5>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <div class="text-left">
+                            <h4>
+                 <strong>How to use:</strong>
+              </h4>
+                            <h5>
+              After you log in, search the web and when you find a point of interest,
+              </h5>
+                            <h5>1. Hightlight the text and right click.</h5>
+                            <h5>2. Hit "Send To Unwander"</h5>
+                            <h5>3. Select your plan and hit "Add this Spot" in the sidebar.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- *********************************************LOGIN CODE ENDS**********************************************-->
+            <!-- *********************************************SHOW PAGE STARTS HERE**********************************************-->
+            <div ng-show="token" ng-cloak class="ext-routePages">
+                <!-- <div class="alert ext-alert alert-danger padding-2" ng-show="!currentPlan">
+                    <i class="fa fa-info"></i>&nbsp; Select a plan to enable Add Spot button
+                </div> -->
+                <!-- <div ng-if="hideMessage === false" style="text-align:center">
+
+                To use this Extension,  right click on the name of a place on any site or use the search below.
+
+                </div> -->
+                <!-- <div class="alert alert-danger" role="alert" ng-if="selectedText && !prediction">No Match Found! Please search using a different keyword.</div> -->
+
+                <!-- <div class="form-group"> -->
+                <div id="ext-spot-content" class="content">
+                  <div ng-if="spotAdded" class="alert alert-success margin-vertical" role="alert">
+                      <button type="button" class="close" aria-label="Close" ng-click="hideSpotAdded()">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      Spot added.
+                  </div>
+                  <div ng-if="noPlanError" class="alert alert-danger margin-vertical" role="alert">
+                      <button type="button" class="close" aria-label="Close" ng-click="hidenoPlanError()">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      plan not selected
+                  </div>
+                    <!-- ****************************** Input Search Box****************************************** -->
+                    <div class="input-group search-place-input">
+                        <!-- <input id="pac-input" class="form-control controls" type="text" name="selectedSpot" value="{{ selectedText }}" ng-model="selectedText" placeholder="Search Google for a place">
+                        </input> -->
+                        <input id="pac-input" class="form-control controls" type="text" name="selectedSpot" value="{{ last_text }}" placeholder="Search Google for a place">
+                        </input>
+                        <ul id="uw-predictions">
+                        </ul>
+                    </div>
+                    <!-- ****************************** Details which show up after a prediction is clicked****************************************** -->
+                    <div class="uw-place-info">
+                        <form class="uw-placeDetails">
+                            <!-- <div ng-show="hideMessage === true"> -->
+                            <div>
+                                <div class="form-group">
+                                    <select class="form-control" id="Category" ng-model="category" placeholder="Select Category" >
+                                        <option ng-selected="true" style="color:grey;"> Select Category</option>
+                                        <option>Food</option>
+                                        <option>Sleep</option>
+                                        <option>Activity</option>
+                                        <option>Shopping</option>
+                                        <option>Transportation</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div ng-hide="apiResults" class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lg fa-clock-o text-info"></i></span>
+                                        <input type="text" class="form-control" placeholder="Hours of operation" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" style="z-index:0" value="{{working_hours}}" disabled>
+                                    </div>
+                                </div>
+                                <div ng-hide="apiResults" class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-link fa-lg"></i></span>
+                                        <input type="text" class="form-control" placeholder="Website" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" style="z-index:0" value="{{placeDetail.website}}" disabled>
+                                    </div>
+                                </div>
+
+                                <div ng-show="apiResults" class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon "><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        </span>
+                                        <textarea class="form-control" rows="2" placeholder="Address" style="z-index:0" value="">{{last_street + " " +
+                                                last_street2 + " " +
+                                                last_region  + " " +
+                                                last_postal
+                                                }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div ng-show="apiResults" class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-link fa-lg"></i></span>
+                                        <input type="text" class="form-control" placeholder="Website" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" style="z-index:0" value="{{last_website }}" disabled>
+                                    </div>
+                                </div>
+
+
+                                <div ng-show="apiResults" class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon "><i class="fa fa-phone fa-lg"></i></span>
+                                        <input type="text" class="form-control" placeholder="Phone Number" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" style="z-index:0" value="{{last_phone}}" disabled>
+                                    </div>
+                                </div>
+                                <div ng-show="apiResults" class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon "><i class="fa fa-sticky-note-o fa-lg"></i></span>
+                                        <textarea class="form-control" rows="5" placeholder="Notes" style="z-index:0" ng-model="notes"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ******************************Select A Plan Section****************************************** -->
+                <!-- <div id="select-plan-btn-wrapper"> -->
+                <!-- <p style="display: inline-block;">Select a Plan below: </p> -->
+                <div class="btn-group dropup select-plan-btn-wrapper">
+                    <button type="button" class="btn selectPlanBtn dropdown-toggle" data-toggle="dropdown">
+                                {{ (currentPlan.title || defaultPlan) | limitTo: 13}}<span ng-if="currentPlan.title.length > 13">...</span>
+                            </button>
+                    <button type="button" class="selectPlanCaret" ng-click="$event.preventDefault; openUnwanderTab(currentPlan)" aria-haspopup="true" aria-expanded="true">
+                              <span>&#8599</span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+
+
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="input-group margin-2">
+                                <input type="text" class="form-control" ng-model="newPlan.title" placeholder="Plan Name">
+                                <span class="input-group-btn">
+                                          <button class="btn ext-addPlanBtn" ng-click="addNewPlan()" type="button">Add</button>
+                                        </span>
+                            </div>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li ng-repeat="plan in currentUserPlans">
+                         <a href="#" ng-click="$event.preventDefault(); selectOnePlan(plan.plan)"
+                         ng-if="plan.plan.planInfo[0].planStatus === 'Active'" style="word-break:break-word">
+                         {{plan.plan.title | limitTo:15 }}
+                         <span ng-if="plan.plan.title.length >15">...</span>
+                         </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- </div> -->
+
+                <!-- ****************************** Map Section****************************************** -->
+                <div id="ext-map-section">
+                    <div id="map" style="width:100%; height:138px"></div>
+                </div>
+                <div ng-if="spotAdded" class="alert alert-success margin-vertical" role="alert">
+                    <button type="button" class="close" aria-label="Close" ng-click="hideSpotAdded()">
+                            <span aria-hidden="true">&times;</span>
+                        </button> Spot added.
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    </div>
+    <div id="add-btn-wrapper" ng-show="token">
+      <button type="button" type="submit" class="btn addBtn btn-block btn-lg" ng-click="addSpot()">
+          Add this Spot
+        </button>
+    </div>
+
+ </div>
+ <!-- side-bar-wrap ends above -->
+</body>
+
+</html>
